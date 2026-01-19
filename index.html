@@ -3,67 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nubank - Cartão 3D</title>
+    <title>Cartão 3D</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="theme-nubank">
+
+    <nav class="nav-menu">
+        <button onclick="changeTheme('nubank')" class="nav-btn active">Nubank</button>
+        <button onclick="changeTheme('picpay')" class="nav-btn">PicPay</button>
+        <button onclick="changeTheme('santander')" class="nav-btn">Santander</button>
+    </nav>
 
     <div class="container">
         <div class="card-wrapper" id="card">
-            <div class="shine"></div>
-            
             <div class="card-face card-front">
-                <div class="logo-nu">nu</div>
-                <div class="chip"></div>
-                <div class="card-number">5162  4800  1122  8347</div>
-                <div style="display: flex; justify-content: space-between; align-items: flex-end;">
-                    <div>
-                        <span class="label">Titular</span><br>
-                        <span style="font-weight: 600;">GABRIEL M SANTOS</span>
+                <div class="bank-logo" id="logo-display">nubank</div>
+                <div class="chip-container">
+                    <div class="chip"></div>
+                    <div class="contactless">
+                        <svg viewBox="0 0 24 24"><path d="M4 15c2.5-3 5.5-3 8 0m-10-3c4-5 8-5 12 0m-14-3c5.5-7 11.5-7 17 0" fill="none" stroke="currentColor" stroke-width="2"/></svg>
                     </div>
-                    <div>
-                        <span class="label">Validade</span><br>
-                        <span style="font-weight: 600;">08/29</span>
+                </div>
+                <div class="card-number" id="card-num-display">5162  4800  1122  8347</div>
+                <div class="card-info">
+                    <div class="info-item">
+                        <span class="label">Titular</span>
+                        <span class="value">GABRIEL M SANTOS</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Validade</span>
+                        <span class="value">08/29</span>
                     </div>
                 </div>
             </div>
 
             <div class="card-face card-back">
                 <div class="magnetic-stripe"></div>
-                
-                <div class="signature-panel">
-                    <span class="signature-text">Gabriel M Santos</span>
+                <div class="signature-section">
+                    <div class="signature-panel">
+                        <span class="signature-name">Gabriel M Santos</span>
+                    </div>
                     <div class="cvv-box">
-                        <span style="font-size: 7px; display: block;">CVV</span>
-                        847
+                        <span class="label">CVV</span>
+                        <span class="cvv-value">847</span>
                     </div>
                 </div>
-
-                <div class="back-content-grid">
-                    <div class="info-group">
-                        <p><strong>Nubank S.A.</strong> | CNPJ: 18.236.120/0001-58</p>
-                        <div class="contact-row">
-                            <div>
-                                <span class="label">Brasil</span>
-                                <p>0800 608 6236</p>
-                            </div>
-                            <div>
-                                <span class="label">Ouvidoria</span>
-                                <p>0800 887 0463</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="back-details">
+                    <p id="bank-full-name">Nubank S.A. | CNPJ: 18.236.120/0001-58</p>
+                    <p>Ouvidoria: 0800 887 0463</p>
                 </div>
-
-                <div class="mastercard-logo">
-                    <div class="circle red"></div>
-                    <div class="circle orange"></div>
+                <div class="brand-logo" id="card-brand">
+                    <div class="mastercard-circles">
+                        <div class="circle red"></div>
+                        <div class="circle orange"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="instructions">Arraste para girar o cartão</div>
+    <div class="instructions">Toque e arraste para explorar</div>
 
     <script src="script.js"></script>
 </body>
