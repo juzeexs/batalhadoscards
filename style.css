@@ -15,30 +15,13 @@ body {
     position: relative;
 }
 
-/* Partículas de fundo */
-body::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: 
-        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.3), transparent),
-        radial-gradient(2px 2px at 60% 70%, rgba(130,10,209,0.4), transparent),
-        radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.2), transparent),
-        radial-gradient(1px 1px at 80% 10%, rgba(130,10,209,0.3), transparent);
-    background-size: 200px 200px, 300px 300px, 150px 150px, 250px 250px;
-    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
-    animation: particleFloat 20s linear infinite;
-}
-
-@keyframes particleFloat {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 50px); }
-}
 
 .container {
-    perspective: 1500px;
-    position: relative;
-    z-index: 1;
+    perspective: 2000px;
+    width: 90%;
+    max-width: 450px;
+    aspect-ratio: 1.58/1;
+    border-radius: 15px;
 }
 
 .card-wrapper {
@@ -53,40 +36,7 @@ body::before {
 .card-wrapper:active {
     cursor: grabbing;
 }
-.card-face {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    border-radius: 15px;
-    overflow: hidden; /* Corta o brilho nas bordas */
-    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.4) 100%), var(--primary);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,255,255,0.2);
-}
 
-/* Camada de Brilho Dinâmico (Efeito Glint) */
-.card-face::before {
-    content: '';
-    position: absolute;
-    inset: -50%;
-    background: radial-gradient(
-        circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-        rgba(255, 255, 255, 0.2) 0%, 
-        transparent 50%
-    );
-    z-index: 1;
-    pointer-events: none;
-    mix-blend-mode: soft-light; /* Mistura o brilho de forma realista com a cor do card */
-}
-
-/* Efeito de Reflexo de Borda (Opcional, dá um toque premium) */
-.card-face::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(0,0,0,0.2) 100%);
-    opacity: 0.5;
-}
 .card-back {
     transform: rotateY(180deg);
     display: flex;
@@ -198,15 +148,12 @@ body::before {
 }
 .red { background: #eb001b; margin-right: -15px; opacity: 0.95; }
 .orange { background: #ff5f00; opacity: 0.9; }
-
 .instructions {
     position: absolute;
     bottom: 30px;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    
-    /* Configuração do gradiente de brilho */
     background: linear-gradient(
         to right, 
         rgba(255, 255, 255, 0.4) 0%, 
@@ -216,17 +163,12 @@ body::before {
         rgba(255, 255, 255, 0.4) 100%
     );
     background-size: 200% auto;
-    
-    /* Faz o gradiente preencher apenas o texto */
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    
-    /* Chama a animação */
     animation: shineText 3s linear infinite;
 }
 
-/* Animação que move o gradiente da esquerda para a direita */
 @keyframes shineText {
     0% {
         background-position: 200% center;
@@ -244,17 +186,16 @@ body::before {
     0% { 
         transform: translateX(-250%) skewX(-30deg); 
     }
-    /* O brilho leva 70% do tempo total para atravessar o card */
+
     70% { 
         transform: translateX(250%) skewX(-30deg); 
     }
-    /* Os outros 30% do tempo ele fica invisível (pausa) */
+
     100% { 
         transform: translateX(250%) skewX(-30deg); 
     }
 }
 
-/* Variáveis de Cores por Tema */
 .theme-nubank { --primary: #820ad1; --bg: #0a0015; }
 .theme-picpay { --primary: #11c76f; --bg: #002211; }
 .theme-santander { --primary: #ec0000; --bg: #2b0000; }
@@ -264,36 +205,6 @@ body {
     transition: background 0.5s ease;
 }
 
-.card-face {
-    background: linear-gradient(135deg, var(--primary) 0%, #000 150%);
-    transition: background 0.5s ease;
-}
-
-.nav-menu {
-    position: fixed;
-    top: 40px; /* Movido para cima para não atrapalhar o card */
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 15px;
-    z-index: 100;
-}
-
-.nav-btn {
-    padding: 12px 25px;
-    border: 2px solid var(--primary);
-    border-radius: 30px;
-    background: transparent;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s;
-}
-
-.nav-btn.active {
-    background: var(--primary);
-    box-shadow: 0 0 15px var(--primary);
-}
 
 .bank-logo {
     position: absolute;
@@ -305,7 +216,6 @@ body {
 }
 
 
-/* Estilo para a bandeira Visa */
 .visa-logo {
     font-family: 'Arial', sans-serif;
     font-weight: bold;
@@ -315,12 +225,10 @@ body {
     letter-spacing: -1px;
 }
 
-/* Esconde os círculos Mastercard quando for Visa */
 .theme-santander .mastercard-circles {
     display: none;
 }
 
-/* Posicionamento do contêiner da marca */
 .brand-logo {
     position: absolute;
     bottom: 25px;
@@ -328,7 +236,6 @@ body {
     display: flex;
     align-items: center;
 }
-
 
 :root {
     --primary: #820ad1;
@@ -341,19 +248,7 @@ body {
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: radial-gradient(circle at center, #1a1a1a 0%, var(--bg) 100%);
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    overflow: hidden;
-    transition: background 0.8s ease;
-}
 
-/* Menu Responsivo */
 .nav-menu {
     position: fixed;
     top: 20px;
@@ -375,21 +270,6 @@ body {
 
 .nav-btn.active { background: var(--primary); border-color: var(--primary); box-shadow: 0 0 15px var(--primary); }
 
-/* Container do Cartão Responsivo */
-.container {
-    perspective: 2000px;
-    width: 90%;
-    max-width: 450px;
-    aspect-ratio: 1.58/1; /* Proporção real de um cartão ID-1 */
-}
-
-.card-wrapper {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    cursor: grab;
-}
 
 .card-face {
     position: absolute;
@@ -398,24 +278,49 @@ body {
     border-radius: 15px;
     color: white;
     padding: clamp(20px, 5vw, 32px);
-    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.4) 100%), var(--primary);
+    background: 
+        radial-gradient(
+            circle at var(--mx, 50%) var(--my, 50%), 
+            rgba(255,255,255,0.35) 0%, 
+            transparent 70%
+        ),
+        linear-gradient(var(--angle, 135deg), rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.4) 100%), 
+        var(--primary);
     box-shadow: 0 30px 60px rgba(0,0,0,0.5);
     border: 1px solid rgba(255,255,255,0.2);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
-/* Efeito de brilho metálico */
-.card-face::before {
+.card-face::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(125deg, transparent 0%, rgba(255,255,255,0.1) 45%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 55%, transparent 100%);
-    transform: translateX(-100%);
-    transition: 0.6s;
+    background: linear-gradient(
+        var(--angle, 135deg), 
+        rgba(255,255,255,0.3) 0%, 
+        transparent 50%, 
+        rgba(0,0,0,0.2) 100%
+    );
+    opacity: 0.6;
+    pointer-events: none;
 }
 
-/* Detalhes do Cartão */
+.card-face::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        var(--angle, 135deg), 
+        rgba(255,255,255,0.3) 0%, 
+        transparent 50%, 
+        rgba(0,0,0,0.2) 100%
+    );
+    opacity: 0.6;
+    pointer-events: none;
+}
+
 .bank-logo { font-size: clamp(24px, 6vw, 38px); font-weight: bold; align-self: flex-end; }
 .chip-container { display: flex; align-items: center; gap: 15px; margin-top: 10px; }
 .chip { width: 50px; height: 38px; background: linear-gradient(135deg, #e0c07c, #b8860b); border-radius: 6px; position: relative; }
@@ -433,7 +338,6 @@ body {
 .label { font-size: 8px; text-transform: uppercase; opacity: 0.6; display: block; }
 .value { font-weight: 600; font-size: 14px; }
 
-/* Verso */
 .card-back { transform: rotateY(180deg); padding: 0; }
 .magnetic-stripe { width: 100%; height: 45px; background: #111; margin-top: 25px; }
 .signature-section { display: flex; padding: 20px; gap: 10px; align-items: center; }
@@ -442,7 +346,6 @@ body {
 .cvv-box { background: white; color: black; padding: 5px 10px; border-radius: 4px; text-align: center; }
 .back-details { padding: 0 20px; font-size: 9px; opacity: 0.7; }
 
-/* Bandeiras */
 .brand-logo { position: absolute; bottom: 20px; right: 25px; }
 .mastercard-circles { display: flex; }
 .circle { width: 35px; height: 35px; border-radius: 50%; }
@@ -451,46 +354,3 @@ body {
 .visa-logo { font-weight: 900; font-style: italic; font-size: 24px; color: white; }
 
 .instructions { margin-top: 40px; color: rgba(255,255,255,0.3); font-size: 12px; }
-
-
-/* Adicione estas propriedades às faces do cartão */
-.card-face {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    border-radius: 15px;
-    overflow: hidden; /* Garante que o brilho não saia do cartão */
-    /* ... mantenha seus outros estilos (background, etc) ... */
-}
-
-/* Camada de Brilho Dinâmico */
-.card-face::before {
-    content: '';
-    position: absolute;
-    inset: -100%; /* Área maior para cobrir o giro */
-    background: radial-gradient(
-        circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-        rgba(255, 255, 255, 0.25) 0%, 
-        transparent 40%
-    );
-    z-index: 5;
-    pointer-events: none;
-    mix-blend-mode: overlay; /* Faz o brilho interagir com as cores do banco */
-    transition: opacity 0.3s ease;
-}
-
-/* Efeito extra de borda iluminada (Glint de borda) */
-.card-face::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 15px;
-    background: linear-gradient(
-        var(--angle, 135deg), 
-        rgba(255,255,255,0.4) 0%, 
-        transparent 20%, 
-        transparent 80%, 
-        rgba(255,255,255,0.2) 100%
-    );
-    pointer-events: none;
-}
