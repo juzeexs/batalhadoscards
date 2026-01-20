@@ -2,7 +2,7 @@
 
 Um projeto de interface interativa que utiliza **CSS 3D** e **JavaScript** para simular um cartão de crédito com rotação realista, troca de temas e efeitos de iluminação dinâmica.
 
-🌐 **Acesse o projeto:** [](https://cartao3d.netlify.app/)
+🌐 **Acesse o projeto:** [https://cartao3d.netlify.app/.](https://cartao3d.netlify.app/)
 
 ---
 
