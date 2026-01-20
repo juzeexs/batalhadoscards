@@ -14,7 +14,7 @@ Um projeto de interface interativa que utiliza **CSS 3D** e **JavaScript** para 
 * **Frente e Verso:** Simulação completa de um cartão físico, incluindo chip, tarja magnética, CVV e assinatura.
 * **Iluminação Dinâmica:** Reflexos e brilhos que se movem conforme a inclinação do cartão via variáveis CSS.
 
-## 🚀 Tecnologias
+## 💻 Tecnologias
 
 * **HTML5:** Estrutura do cartão e elementos da interface.
 * **CSS3:** Uso intenso de `perspective`, `transform-style: preserve-3d` e variáveis customizadas para os temas.
